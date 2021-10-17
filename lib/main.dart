@@ -18,18 +18,12 @@ class MyApp extends StatelessWidget {
       theme: ThemeData.light(),
       darkTheme:
           ThemeData.dark(), // standard dark theme // device controls theme
-    
-    initialRoute: '/',
+
+      initialRoute: '/',
       routes: {
         '/': (context) => SignUp(),
         'SignIn': (context) => SignIn(),
       },
-
     );
-    
   }
 }
-
-
-
-      

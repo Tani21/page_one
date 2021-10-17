@@ -46,17 +46,17 @@ flutter:
 
   # To add assets to your application, add an assets section, like this:
   assets:
-    - assets/white_logo.jpeg
-    - assets/black_logo.jpeg
-    - assets/facebook.png
-    - assets/google.png
-    - assets/google.jpg
-    - assets/facebook.jpg
-    - assets/sirs_logo.jpeg
-    - assets/dark_logo.jpeg
-    - assets/black_bg_logo.jpeg
-    - assets/logo_noname.jpeg
-    - assets/black_part2.jpeg
+
+  - assets/Logos/facebook.jpg
+  - assets/Logos/google.jpg
+  - assets/Logos/Fitegrate/black_bg_logo.jpeg
+  - assets/Logos/Fitegrate/black_logo.jpeg
+  - assets/Logos/Fitegrate/black_part2.jpeg
+  - assets/Logos/Fitegrate/dark_logo.jpeg
+  - assets/Logos/Fitegrate/logo_noname.jpeg
+  - assets/Logos/Fitegrate/new_logo.jpeg
+  - assets/Logos/Fitegrate/sirs_logo.jpeg
+  - assets/Logos/Fitegrate/white_logo.jpeg
    
 
   # An image asset can refer to one or more resolution-specific "variants", see
