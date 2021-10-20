@@ -7,7 +7,10 @@ class GetStarted extends StatefulWidget {
 }
 
 class _GetStartedState extends State<GetStarted> {
- // final int ;
+  final _formKey = GlobalKey<FormState>();
+  Long age,height,weight,phno;
+  String gender= 'pnts';
+  bool _isloading = false;
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
@@ -42,12 +45,11 @@ class _GetStartedState extends State<GetStarted> {
                       padding: EdgeInsets.only(left: 200),
                       height: size.height * 0.065,
                       width: size.width * 0.8,
-                      child: TextField(
+                      child: TextFormField(
+                        validator: (value) => value!.isEmpty ? "Enter the age" : null,
                         style: TextStyle(fontSize: 25),
                       onChanged: (value) {
-                        setState(() {
-            
-                        });
+                        age = value;
                       },
                       decoration: InputDecoration(
                         border: InputBorder.none,
@@ -78,12 +80,11 @@ class _GetStartedState extends State<GetStarted> {
                       padding: EdgeInsets.only(left: 200),
                       height: size.height * 0.065,
                       width: size.width * 0.8,
-                      child: TextField(
+                      child: TextFormField(
+                        validator: (value) => value!.isEmpty ? "Enter the Gender" : null,
                         style: TextStyle(fontSize: 25),
                       onChanged: (value) {
-                        setState(() {
-            
-                        });
+                        gender = value;
                       },
                       decoration: InputDecoration(
                         border: InputBorder.none,
@@ -114,12 +115,11 @@ class _GetStartedState extends State<GetStarted> {
                       padding: EdgeInsets.only(left: 200),
                       height: size.height * 0.065,
                       width: size.width * 0.8,
-                      child: TextField(
+                      child: TextFormField(
+                        validator: (value) => value!.isEmpty ? "Enter the height" : null,
                         style: TextStyle(fontSize: 25),
                       onChanged: (value) {
-                        setState(() {
-            
-                        });
+                        height = value;
                       },
                       decoration: InputDecoration(
                         border: InputBorder.none,
@@ -150,12 +150,11 @@ class _GetStartedState extends State<GetStarted> {
                       padding: EdgeInsets.only(left: 200),
                       height: size.height * 0.065,
                       width: size.width * 0.8,
-                      child: TextField(
+                      child: TextFormField(
+                        validator: (value) => value!.isEmpty ? "Enter the weight" : null,
                         style: TextStyle(fontSize: 25),
                       onChanged: (value) {
-                        setState(() {
-            
-                        });
+                        weight = value;
                       },
                       decoration: InputDecoration(
                         border: InputBorder.none,
@@ -186,12 +185,11 @@ class _GetStartedState extends State<GetStarted> {
                       padding: EdgeInsets.only(left: 180),
                       height: size.height * 0.065,
                       width: size.width * 0.8,
-                      child: TextField(
+                      child: TextFormField(
+                        validator: (value) => value!.isEmpty ? "Enter the Phone number" : null,
                         style: TextStyle(fontSize: 25),
                       onChanged: (value) {
-                        setState(() {
-            
-                        });
+                        phno = value;
                       },
                       decoration: InputDecoration(
                         border: InputBorder.none,
