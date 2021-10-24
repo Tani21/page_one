@@ -245,7 +245,28 @@ class _SignUpState extends State<SignUp> {
 
               //RoundedButton(buttonName: 'Sign Up'),
               //RoundedButton(buttonName: 'Sign Up'),
-              
+              Container(
+                height: size.height * 0.065,
+                width: size.width * 0.6,
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(22),
+                  color: Colors.black87,
+                ),
+                child: TextButton(
+                  onPressed: () {
+                    Navigator.pushNamed(context, 'SignIn');
+                    // main();
+                    // UserCredential userCredential = await auth.signInAnonymously();
+                    // print(userCredential);
+                  },
+                  child: Text(
+                    'Sign Up',
+                    style: TextStyle(color: Colors.orange[300], fontSize: 20),
+                    //style: kBodyText.copyWith(fontWeight: FontWeight.bold)),
+                  ),
+                ),
+              ),
+
               SizedBox(
                 height: size.height * 0.06,
               ),
