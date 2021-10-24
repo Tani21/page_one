@@ -1,9 +1,11 @@
 import 'dart:core';
+import 'package:fitegrate_project/screens/Getting_started.dart';
 import 'package:fitegrate_project/screens/bottom_navigation.dart';
 import 'package:fitegrate_project/screens/dashboard.dart';
 import 'package:flutter/material.dart';
 import 'package:fitegrate_project/screens/sign_in.dart';
 import 'package:fitegrate_project/screens/sign_up.dart';
+
 
 void main() {
   runApp(MyApp());
@@ -15,6 +17,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
+      //home: GetStarted(),
       title: 'Flutter Demo',
 
       theme: ThemeData.light(),
@@ -25,7 +28,8 @@ class MyApp extends StatelessWidget {
       routes: {
         '/': (context) => SignUp(),
         'SignIn': (context) => SignIn(),
-        'Dashboard':(context) => DashBoard(),
+        'Getting Dtarted':(context) => GetStarted(),
+        'Dashboard':(context) => DashBoard(), 
         'BottomNavigation':(context) => MyStatefulWidget(),
       },
 
