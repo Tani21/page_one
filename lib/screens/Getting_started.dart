@@ -1,3 +1,4 @@
+import 'package:fitegrate_project/screens/dashboard.dart';
 import 'package:flutter/material.dart';
 
 class GetStarted extends StatefulWidget {
@@ -8,9 +9,32 @@ class GetStarted extends StatefulWidget {
 
 class _GetStartedState extends State<GetStarted> {
   final _formKey = GlobalKey<FormState>();
-  Long age,height,weight,phno;
-  String gender= 'pnts';
+  //int age=0,height=0,weight=0;
+  //Long phno;
+  String gender= 'pnts',age='Null',height='Null',weight='Null',phno='Null';
   bool _isloading = false;
+  confirm_details() async{
+    if(_formKey.currentState!.validate()){
+      setState(() {
+        _isloading = true;
+      });
+      Map<String,String> basicinfoMap = {
+        "age" : age,
+        "gender" : gender,
+        "height" : height,
+        "weight" : weight,
+        "ph number" : phno
+      };
+      // await databaseService.addQuestionData(basicinfoMap).then((value){
+      //   setState(() {
+      //     _isloading = false;
+      //   });
+      // });
+      Navigator.pushReplacement(context, MaterialPageRoute(
+            builder: (context) => DashBoard(),
+          ));
+    }
+  }
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
@@ -211,7 +235,7 @@ class _GetStartedState extends State<GetStarted> {
                   ),
                   child: TextButton(
                     onPressed: () {
-                      //Navigator.pushNamed(context, 'SignIn');
+                      confirm_details();
                     },
                   child: Text(
                     'Confirm Details',
