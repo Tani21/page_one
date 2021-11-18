@@ -1,28 +1,15 @@
-//import 'package:fitegrate_project/rounded_button.dart';
-import 'package:flutter/material.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:fitegrate_project/provider/google_sign_in.dart';
 
-Widget _buildSocialBtn(Function onTap, AssetImage logo) {
-  return GestureDetector(
-    child: Container(
-      height: 40.0,
-      width: 40.0,
-      decoration: BoxDecoration(
-        shape: BoxShape.circle,
-        color: Colors.white,
-        boxShadow: [
-          BoxShadow(
-            color: Colors.black26,
-            offset: Offset(0, 2),
-            blurRadius: 4.0,
-          ),
-        ],
-        image: DecorationImage(
-          image: logo,
-        ),
-      ),
-    ),
-  );
-}
+import 'package:fitegrate_project/screens/home.dart';
+
+
+import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
+import 'package:provider/provider.dart';
+import 'package:flutter_signin_button/flutter_signin_button.dart';
+
+bool loginwith = false;
 
 class SignIn extends StatefulWidget {
   const SignIn({Key? key}) : super(key: key);
@@ -32,6 +19,11 @@ class SignIn extends StatefulWidget {
 }
 
 class _SignInState extends State<SignIn> {
+  bool _issecure=true;
+ 
+  final TextEditingController _emailController = TextEditingController();
+  final TextEditingController _passwordController = TextEditingController();
+  final FirebaseAuth _firebaseAuth = FirebaseAuth.instance;
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
@@ -72,17 +64,17 @@ class _SignInState extends State<SignIn> {
                 ),
                 child: Center(
                   child: TextField(
-                    onChanged: (value) {
-                      setState(() {
-                        //TextInputFieldEmail.email=value;
-                      });
-                    },
+                    controller: _emailController,
                     decoration: InputDecoration(
                       border: InputBorder.none,
-                     // contentPadding: EdgeInsets.fromLTRB(20, 0, 0, 0),
+                      // contentPadding: EdgeInsets.fromLTRB(20, 0, 0, 0),
                       prefixIcon: Padding(
                         padding: const EdgeInsets.symmetric(horizontal: 20),
-                        child: Icon(Icons.email_outlined, size: 28, color: Colors.black87,),
+                        child: Icon(
+                          Icons.email_outlined,
+                          size: 28,
+                          color: Colors.black87,
+                        ),
                       ),
                       hintText: 'Email Id',
 
@@ -94,8 +86,11 @@ class _SignInState extends State<SignIn> {
                     ),
                     keyboardType: TextInputType.name,
                     textInputAction: TextInputAction.next,
-                    style: TextStyle(color: Colors.black, fontSize: 15,
-                        fontWeight: FontWeight.bold,),
+                    style: TextStyle(
+                      color: Colors.black,
+                      fontSize: 15,
+                      fontWeight: FontWeight.bold,
+                    ),
                   ),
                 ),
               ),
@@ -112,17 +107,25 @@ class _SignInState extends State<SignIn> {
                 ),
                 child: Center(
                   child: TextField(
-                    onChanged: (value) {
-                      setState(() {
-                        //TextInputFieldEmail.email=value;
-                      });
-                    },
+                    controller: _passwordController,
                     decoration: InputDecoration(
+                      suffixIcon: IconButton(icon: _issecure ? Icon(Icons.visibility_off) : Icon(Icons.visibility), 
+                      onPressed: ()=>
+                      {
+                        setState((){
+                          _issecure=!_issecure;
+
+                        })
+                      },),
                       border: InputBorder.none,
                       //contentPadding: EdgeInsets.fromLTRB(20, 0, 0, 0),
                       prefixIcon: Padding(
                         padding: const EdgeInsets.symmetric(horizontal: 20),
-                        child: Icon(Icons.lock_outline, size: 28, color: Colors.black87,),
+                        child: Icon(
+                          Icons.lock_outline,
+                          size: 28,
+                          color: Colors.black87,
+                        ),
                       ),
                       hintText: 'Password',
                       hintStyle: TextStyle(
@@ -130,18 +133,21 @@ class _SignInState extends State<SignIn> {
                           fontSize: 18,
                           fontWeight: FontWeight.bold),
                     ),
-                    
                     keyboardType: TextInputType.emailAddress,
-                    obscureText: true,
+                    obscureText: _issecure,
+                    
                     textInputAction: TextInputAction.next,
-                    style: TextStyle(color: Colors.black, fontSize: 15,
-                        fontWeight: FontWeight.bold,),
+                    style: TextStyle(
+                      color: Colors.black,
+                      fontSize: 15,
+                      fontWeight: FontWeight.bold,
+                    ),
                   ),
                 ),
               ),
 
               SizedBox(
-                height: size.height * 0.035,
+                height: size.height * 0.03,
               ),
 
               Container(
@@ -152,8 +158,13 @@ class _SignInState extends State<SignIn> {
                   color: Colors.orange[400],
                 ),
                 child: TextButton(
-                  onPressed: () {
-                    Navigator.pushNamed(context, 'BottomNavigation');
+                  onPressed: () async {
+                    loginwith = true;
+                    {
+                      setState(() {
+                        _signInWithEmailAndPassword();
+                      });
+                    }
                   },
                   child: Text(
                     'Sign In',
@@ -163,18 +174,23 @@ class _SignInState extends State<SignIn> {
               ),
 
               SizedBox(
-                height: size.height * 0.06,
+                height: size.height * 0.03,
               ),
 
-              Text(
-                'Forgot Password?',
-                style: TextStyle(
-                    color: Colors.blue[600],
-                    fontSize: 20,
-                    fontWeight: FontWeight.bold),
+              GestureDetector(
+                onTap: () => Navigator.pushNamed(context, 'forgotpassword'),
+                child: Container(
+                  child: Text(
+                    'Forgot Password',
+                    style: TextStyle(
+                        color: Colors.blue[600],
+                        fontSize: 20,
+                        fontWeight: FontWeight.bold),
+                  ),
+                ),
               ),
               SizedBox(
-                height: size.height * 0.04,
+                height: size.height * 0.03,
               ),
 
               Text(
@@ -189,66 +205,67 @@ class _SignInState extends State<SignIn> {
                 height: size.height * 0.02,
               ),
 
-              Row(
+              Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  //     InkWell(
-                  //   onTap: () {},
-                  //   child: Ink(
-                  //     color: Color(0xFF397AF3),
-                  //     child: Padding(
-                  //   padding: EdgeInsets.all(6),
-                  //   child: Wrap(
-                  //     crossAxisAlignment: WrapCrossAlignment.center,
-                  //     children: [
-                  //       Icon(Icons.android),
-                  //       SizedBox(width: 12),
-                  //       Text('Google'),
-                  //     ],
-                  //   ),
-                  //     ),
-                  //   ),
+                  SignInButton(
+                    Buttons.Google,
+                    //mini: true,
+                    onPressed: () {
+                      final provider = Provider.of<GoogleSignInProvider>(
+                          context,
+                          listen: false);
+                      provider.googleLogin();
+                      
+                    },
+                  ),
+                  // SizedBox(
+                  //   width: size.height * 0.08,
                   // ),
-
-                  // SizedBox( width: size.width * 0.08,),
-
-                  // InkWell(
-                  //   onTap: () {},
-                  //   child: Ink(
-                  //     color: Color(0xFF397AF3),
-                  //     child: Padding(
-                  //   padding: EdgeInsets.all(6),
-                  //   child: Wrap(
-                  //     crossAxisAlignment: WrapCrossAlignment.center,
-                  //     children: [
-                  //       Icon(Icons.android),
-                  //       SizedBox(width: 12),
-                  //       Text('Facebook'),
-                  //     ],
-                  //   ),
-                  //     ),
-                  //   ),
+                  // SignInButton(
+                  //   Buttons.Facebook,
+                  //   //mini: true,
+                  //   onPressed: () {},
                   // ),
-
-                  _buildSocialBtn(
-                    () => print('Login with Facebook'),
-                    AssetImage(
-                      'assets/Logos/facebook.jpg',
-                    ),
-                  ),
-
-                  SizedBox(
-                    width: size.width * 0.10,
-                  ),
-
-                  _buildSocialBtn(
-                    () => print('Login with Google'),
-                    AssetImage(
-                      'assets/Logos/google.jpg',
-                    ),
-                  ),
                 ],
               ),
+
+              //     Container(
+              //   height: size.height * 0.065,
+              //   width: size.width * 0.6,
+              //   decoration: BoxDecoration(
+              //     borderRadius: BorderRadius.circular(22),
+              //     color: Colors.orange[400],
+              //   ),
+              //   child: TextButton(
+              //     onPressed: () {
+              //       // Navigator.pushNamed(context, 'BottomNavigation');
+              //       final provider =
+              //           Provider.of<GoogleSignInProvider>(context, listen: false);
+              //           provider.googleLogin();
+              //     },
+              //     child: Text(
+              //       'Sign In with google',
+              //       style: TextStyle(color: Colors.white, fontSize: 20),
+              //     ),
+              //   ),
+              // ),
+
+              // SizedBox(
+              //   width: size.width * 0.10,
+              // ),
+
+              // _buildSocialBtn(
+              //   () {
+              //     final provider =
+              //       Provider.of<GoogleSignInProvider>(context, listen: false);
+              //       provider.googleLogin();
+              //   },
+              //   AssetImage(
+              //     'assets/Logos/google.jpg',
+
+              //   ),
+              // ),
 
               SizedBox(
                 height: size.height * 0.02,
@@ -264,13 +281,18 @@ class _SignInState extends State<SignIn> {
                         fontSize: 18,
                         fontWeight: FontWeight.bold),
                   ),
-                  Text(
-                    'Sign up',
-                    style: TextStyle(
-                        color: Colors.blue[600],
-                        fontSize: 20,
-                        fontWeight: FontWeight.bold),
-                  )
+                  GestureDetector(
+                    onTap: () => Navigator.pushNamed(context, 'SignUp'),
+                    child: Container(
+                      child: Text(
+                        'Sign Up',
+                        style: TextStyle(
+                            color: Colors.blue[600],
+                            fontSize: 20,
+                            fontWeight: FontWeight.bold),
+                      ),
+                    ),
+                  ),
                 ],
               ),
             ],
@@ -278,5 +300,26 @@ class _SignInState extends State<SignIn> {
         ),
       ),
     );
+  }
+
+  _signInWithEmailAndPassword() async {
+    try {
+      final User? user = (await _firebaseAuth.signInWithEmailAndPassword(
+              email: _emailController.text.trim(),
+              password: _passwordController.text.trim()))
+          .user;
+      if (user != null) {
+        setState(() {
+          Fluttertoast.showToast(msg: "Signed In Sucessfully");
+
+          Navigator.pushReplacement(
+            context,
+            MaterialPageRoute(builder: (context) => HomePage()),
+          );
+        });
+      }
+    } catch (e) {
+      Fluttertoast.showToast(msg: e.toString());
+    }
   }
 }

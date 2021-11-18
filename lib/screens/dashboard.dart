@@ -1,4 +1,8 @@
+import 'package:firebase_auth/firebase_auth.dart';
+
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+
 
 class DashBoard extends StatefulWidget {
   const DashBoard({Key? key}) : super(key: key);
@@ -10,12 +14,13 @@ class DashBoard extends StatefulWidget {
 class _DashBoardState extends State<DashBoard> {
   @override
   Widget build(BuildContext context) {
+     final  user = FirebaseAuth.instance.currentUser!;
     Size size = MediaQuery.of(context).size;
     return Scaffold(
       backgroundColor: Colors.grey[200],
       appBar: AppBar(
         backgroundColor: Colors.orange[400],
-        title: Text('Hi, username'),
+        title: Text('Hi, '+ user.displayName!),
         actions: [
           IconButton(
             onPressed: () {},
@@ -165,7 +170,9 @@ class _DashBoardState extends State<DashBoard> {
                               crossAxisAlignment: CrossAxisAlignment.center,
                               children: [
                                 TextButton(
-                                    onPressed: () {},
+                                    onPressed: () {
+                                      // Navigator.pushNamed(context, 'PreRequisite');
+                                    },
                                     child: Text(
                                       'Cardio',
                                       style: TextStyle(
@@ -191,7 +198,9 @@ class _DashBoardState extends State<DashBoard> {
                               crossAxisAlignment: CrossAxisAlignment.center,
                               children: [
                                 TextButton(
-                                    onPressed: () {},
+                                    onPressed: () {
+                                      // Navigator.pushNamed(context, 'SpotJog');
+                                    },
                                     child: Padding(
                                       padding: const EdgeInsets.fromLTRB(
                                           10, 5, 10, 5),
@@ -238,19 +247,20 @@ class _DashBoardState extends State<DashBoard> {
                     ),
                     child: TextButton(
                       onPressed: () {
-                        //Navigator.pushNamed(context, 'SignIn');
+                        Navigator.pushNamed(context, 'HealthAssessment');
                         // main();
                         // UserCredential userCredential = await auth.signInAnonymously();
                         // print(userCredential);
                       },
                       child: Padding(
                         padding: const EdgeInsets.fromLTRB(10, 2, 10, 2),
+                        
                         child: Text(
                           'Health Assessment', //textAlign: TextAlign.start,
                           style: TextStyle(
                             color: Colors.white,
-                            fontSize: 18,
-                            fontWeight: FontWeight.normal,
+                            fontSize: 15,
+                            //fontWeight: FontWeight.normal,
                           ),
                           textAlign: TextAlign.center,
                           //style: kBodyText.copyWith(fontWeight: FontWeight.bold)),
@@ -267,7 +277,7 @@ class _DashBoardState extends State<DashBoard> {
                     ),
                     child: TextButton(
                       onPressed: () {
-                        //Navigator.pushNamed(context, 'SignIn');
+                        Navigator.pushNamed(context, 'PreRequisite');
                         // main();
                         // UserCredential userCredential = await auth.signInAnonymously();
                         // print(userCredential);
@@ -278,7 +288,7 @@ class _DashBoardState extends State<DashBoard> {
                           'Base Line Fitness Assessment', //textAlign: TextAlign.start,
                           style: TextStyle(
                             color: Colors.white,
-                            fontSize: 18,
+                            fontSize: 15,
                           ),
                           textAlign: TextAlign.center,
                           //style: kBodyText.copyWith(fontWeight: FontWeight.bold)),
