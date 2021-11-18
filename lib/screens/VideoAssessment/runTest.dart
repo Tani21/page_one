@@ -433,13 +433,15 @@ class _VideoAssessmentRunTestState extends State<VideoAssessmentRunTest> {
             radius: 30,
             child: IconButton(
               onPressed: () {
-                Navigator.pushNamed(context, '');
+                Navigator.pushNamed(context, 'Report');
               },
               icon: Icon(Icons.arrow_forward),
               color: Colors.black87,
               iconSize: 30,
             ),
-          )
+          ),
+
+          SizedBox(height: 10,),
 
 
              

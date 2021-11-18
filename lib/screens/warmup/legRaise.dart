@@ -307,7 +307,9 @@ class _LegRaiseState extends State<LegRaise> {
               color: Colors.black87,
               iconSize: 30,
             ),
-          )
+          ),
+            SizedBox(height: 10,),
+
         ],
       ),
     );

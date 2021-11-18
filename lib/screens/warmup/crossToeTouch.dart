@@ -313,7 +313,9 @@ class _CrossToeTouchState extends State<CrossToeTouch> {
               color: Colors.black87,
               iconSize: 30,
             ),
-          )
+          ),
+            SizedBox(height: 10,),
+
         ],
       ),
     );

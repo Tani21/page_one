@@ -310,7 +310,9 @@ class _SpotJogState extends State<SpotJog> {
               color: Colors.black87,
               iconSize: 30,
             ),
-          )
+          ),
+            SizedBox(height: 10,),
+
         ],
       ),
     );

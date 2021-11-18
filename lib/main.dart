@@ -14,6 +14,7 @@ import 'package:fitegrate_project/screens/healthassessment.dart';
 import 'package:fitegrate_project/screens/home.dart';
 import 'package:fitegrate_project/screens/otp_authentication.dart';
 import 'package:fitegrate_project/screens/pre-requisite.dart';
+import 'package:fitegrate_project/screens/report.dart';
 import 'package:fitegrate_project/screens/sign_up.dart';
 import 'package:fitegrate_project/screens/warmup/IYTactivation.dart';
 import 'package:fitegrate_project/screens/warmup/WalkHipRotation.dart';
@@ -77,6 +78,7 @@ class MyApp extends StatelessWidget {
         'VideoAssessmentSitAndReach':(context) => VideoAssessmentSitAndReach(),
         'VideoAssessmentPushUp':(context) => VideoAssessmentPushUp(),
         'VideoAssessmentRunTest':(context) => VideoAssessmentRunTest(),
+        'Report':(context) => Report(),
 
       },
       ),

@@ -11,10 +11,13 @@ class _ReportState extends State<Report> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Column(
-        children: [
-          Text('This report will be generated soon', style: TextStyle(color: Colors.black),),
-        ],
+      body: Center(
+        child: Column(
+          children: [
+            SizedBox(height:60),
+            Center(child: Text('This report will be generated soon', style: TextStyle(color: Colors.white),)),
+          ],
+        ),
       ),
     );
   }

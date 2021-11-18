@@ -359,8 +359,9 @@ CountDownController _controller = CountDownController();
               color: Colors.black87,
               iconSize: 30,
             ),
-          )
+          ),
 
+  SizedBox(height: 10,),
 
              
             

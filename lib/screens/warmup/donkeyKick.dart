@@ -307,6 +307,9 @@ class _DonkeyKicksState extends State<DonkeyKicks> {
             icon: Icon(Icons.arrow_forward),
             backgroundColor: Colors.grey[300]!,
           ),
+
+            SizedBox(height: 10,),
+
           // CircleAvatar(
           //   backgroundColor: Colors.grey[300]!,
           //   radius: 30,

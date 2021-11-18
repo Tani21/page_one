@@ -307,7 +307,9 @@ class _HipCircleState extends State<HipCircle> {
               color: Colors.black87,
               iconSize: 30,
             ),
-          )
+          ),
+            SizedBox(height: 10,),
+
         ],
       ),
     );

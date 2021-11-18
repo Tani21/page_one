@@ -307,7 +307,9 @@ class _WalkingKneeHugsState extends State<WalkingKneeHugs> {
               color: Colors.black87,
               iconSize: 30,
             ),
-          )
+          ),
+            SizedBox(height: 10,),
+
         ],
       ),
     );

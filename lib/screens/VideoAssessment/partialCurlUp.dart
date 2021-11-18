@@ -357,8 +357,9 @@ class _VideoAssessmentPartialCurlUpState extends State<VideoAssessmentPartialCur
               color: Colors.black87,
               iconSize: 30,
             ),
-          )
+          ),
 
+  SizedBox(height: 10,),
 
              
             

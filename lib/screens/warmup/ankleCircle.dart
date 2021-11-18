@@ -307,7 +307,10 @@ class _AnkleCircleState extends State<AnkleCircle> {
               color: Colors.black87,
               iconSize: 30,
             ),
-          )
+          ),
+
+            SizedBox(height: 10,),
+
         ],
       ),
     );

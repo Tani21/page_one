@@ -15,7 +15,9 @@ class _ProfileState extends State<Profile> {
   @override
   Widget build(BuildContext context) {
     final user = FirebaseAuth.instance.currentUser!;
+    Size size = MediaQuery.of(context).size;
     return Scaffold(
+      backgroundColor: Colors.white60,
       appBar: AppBar(
         title: Text('Profile'),
         centerTitle: true,
@@ -30,48 +32,113 @@ class _ProfileState extends State<Profile> {
           )
         ],
       ),
-      body: Container(
-        alignment: Alignment.center,
-        color: Colors.blueGrey.shade900,
+      body:  SingleChildScrollView(
         child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Text(
-              'Profile',
-              style: TextStyle(fontSize: 24),
-            ),
-            SizedBox(height: 32),
-           
-            SizedBox(height: 8),
-            Text(
-              'Name  ' + user.displayName!,
-              style: TextStyle(color: Colors.white, fontSize: 16),
-            ),
-            SizedBox(height: 8),
-            Text(
-              'email  ' + user.email!,
-              style: TextStyle(color: Colors.white, fontSize: 16),
-            ),
-            Stack(
-              children: <Widget>[
-                Container(
-                  decoration: new BoxDecoration(color: Colors.white),
-                  alignment: Alignment.center,
-                  height: 240,
-                  child: Image.asset('assets/Fitegrate/newest_logo.png'),
+            children: [
+             
+              
+               Image.asset('assets/Fitegrate/profile.jpeg', height:  size.height*0.20,  width: size.width,),
+             
+              SizedBox(height: 8),
+              Text(
+                 user.displayName!,
+                style: TextStyle(color: Colors.black, fontSize: 18, fontWeight: FontWeight.bold),
+              ),
+              SizedBox(height: 8),
+              Text(
+                 user.email!,
+                style: TextStyle(color: Colors.black, fontSize: 16),
+              ),
+               SizedBox(height: 15),
+              Container(
+                padding: EdgeInsets.fromLTRB(30, 0, 30, 5),
+                child: Column(
+                  children: [
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceAround,
+                      children: [
+                        Container(
+                          //margin: EdgeInsets.all(10),
+                          padding: EdgeInsets.all(20),
+                           color: Colors.grey[350],
+                          child: Column(
+                            
+                            children: [
+                              Text('Phone Number',style: TextStyle(color: Colors.black,fontWeight: FontWeight.bold, fontSize: 18),),
+                              Text('9876543210',style: TextStyle(color: Colors.black, fontSize: 16),)
+                            ],
+                          ),
+                        ),
+      
+                        Container(
+                          padding: EdgeInsets.all(20),
+                           //margin: EdgeInsets.all(10),
+                          color: Colors.grey[350],
+                          child: Column(
+                            children: [
+                              Text('Phone Number',style: TextStyle(color: Colors.black,fontWeight: FontWeight.bold, fontSize: 18),),
+                              Text('9876543210',style: TextStyle(color: Colors.black,fontSize: 16),)
+                            ],
+                          ),
+                        ),
+                      ],
+                    ),
+      
+                    SizedBox(height: 20,),
+      
+                    Container(
+                      color: Colors.grey[350],
+                      height: size.height*0.09,
+                      width: size.width,
+                      child: Row(
+                        children: [
+                          SizedBox(width: 10,),
+                          Icon(Icons.card_membership_outlined, color: Colors.black, size: 40,),
+                           SizedBox(width: 10,),
+                          Text('Membership Validity', style: TextStyle(color: Colors.black, fontSize: 18, fontWeight: FontWeight.bold),)
+                        ],
+                      ),
+                    ),
+
+                     SizedBox(height: 20,),
+
+                    Container(
+                      color: Colors.grey[350],
+                      height: size.height*0.09,
+                      width: size.width,
+                      child: Row(
+                        children: [
+                          SizedBox(width: 10,),
+                          Icon(Icons.call, color: Colors.black, size: 40,),
+                           SizedBox(width: 10,),
+                          Text('Contact Us', style: TextStyle(color: Colors.black, fontSize: 18, fontWeight: FontWeight.bold),)
+                        ],
+                      ),
+                    ),
+
+                    SizedBox(height: 20,),
+
+                    Container(
+                      color: Colors.grey[350],
+                      height: size.height*0.09,
+                      width: size.width,
+                      child: Row(
+                        children: [
+                          SizedBox(width: 10,),
+                          Icon(Icons.announcement_outlined, color: Colors.black, size: 40,),
+                           SizedBox(width: 10,),
+                          Text('Feedback', style: TextStyle(color: Colors.black, fontSize: 18, fontWeight: FontWeight.bold),)
+                        ],
+                      ),
+                    ),
+                  ],
                 ),
-                Align(
-                  alignment: Alignment.bottomRight,
-                  child: Icon(
-                    Icons.edit_attributes_outlined,
-                    color: Colors.black87,
-                  ),
-                )
-              ],
-            ),
-          ],
-        ),
+              ),
+             
+            ],
+          ),
       ),
+      
     );
   }
 }

@@ -307,7 +307,9 @@ class _WalkingHipState extends State<WalkingHip> {
               color: Colors.black87,
               iconSize: 30,
             ),
-          )
+          ),
+            SizedBox(height: 10,),
+
         ],
       ),
     );
